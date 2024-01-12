@@ -1,6 +1,6 @@
 // ADDING ITEMS TO START AND END OF LIST
 // Get the <ul> element
-
+  //asd
 // ADD NEW ITEM TO END OF LIST
 // Create element
 // Create text node
