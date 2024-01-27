@@ -81,6 +81,7 @@
                 class="form-control"
                 id="usernameInput"
                 placeholder="Username"
+                required
               />
               <p id="usernameError"></p>
             </div>
@@ -92,6 +93,7 @@
                 class="form-control"
                 id="inputEmail4"
                 placeholder="Email"
+                required
               />
               <p id="emailError"></p>
             </div>
@@ -99,10 +101,11 @@
             <div class="form-group col-md-6">
               <label for="inputPassword4">Password</label>
               <input
-                type="text"
+                type="password"
                 class="form-control"
                 id="inputPassword4"
                 placeholder="Password"
+                required
               />
               <p id="passwordError"></p>
             </div>
@@ -114,7 +117,10 @@
                 class="form-control"
                 id="inputPhone5"
                 placeholder="Phone Number"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                required
               />
+              <small>Example: 123-456-7890</small>
               <p id="phoneError"></p>
             </div>
       
