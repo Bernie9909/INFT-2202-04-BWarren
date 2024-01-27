@@ -37,16 +37,17 @@ function validateEmailAddressRegex(emailString) {
 }
 
 function validateUsernameRegex(usernameString) {
+    console.log(usernameString);
     // Using Regex and information found on Stackoverflow.com 
     // In response to user learning how to use regex, user Alan Moore responded with 
     // a series of Regex lines and explainations of their use and tips/tricks. 
     // https://stackoverflow.com/questions/1221985/how-to-validate-a-user-name-with-regex
     // I'll be using the first one in his list of responses, as it is the simplest and 
-    // most akin to my needs for simple username vaildation.
+    // most akin to my needs for quick username vaildation.
 
     var usernameRegex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/; // Allows only ASCII characters with hyphens, underscores, and spaces.
                                                                 // Does not allow separators for 1st/last characters.
-                                                                // Does not allow 2 separators in a row (forces char after separator).
+                                                                // Does not allow 2 separators in a row (forces alpha-num char after separator).
 
     // Same logic as email, if username is a valid string that matches the regex, return true                                                            
     if (!!usernameString && typeof usernameString === 'string'
@@ -62,6 +63,28 @@ function validateUsernameRegex(usernameString) {
     }
 }
 
+// Event listener for page submission
+document.querySelector("form").addEventListener("submit", function(event) {
+    // Store the username from the form as a var
+    var usernameString = document.getElementById("usernameInput").value;
+    // Store the boolean return of the username validation function
+    var valid = validateUsernameRegex(usernameString);
+    // if the username did not validate, stop the submission event. 
+    if (!valid) {
+        event.preventDefault();
+    }
+    console.log(valid);
+});
+
+// Event listener for form reset button 
+document.querySelector("form").addEventListener("reset", function() {
+    // Get the general error element 
+    var targetElement = document.getElementById("generalError");
+    // Reset the error message to blank and its color to default. 
+    targetElement.textContent = "";
+    targetElement.style.color = "";
+});
+
 
 //TODO:
 // Make all fields required (HTML)                                                      ==========================
@@ -69,6 +92,6 @@ function validateUsernameRegex(usernameString) {
 // Ensure the password is redacted into dots on screen when typed in (HTML)             ===========================
 // Create a function that knows if the username is valid (feel free to grab some RegEx from the Interwebs - cite source and test it!)       ========================
 // If it is not valid, be sure to update the #generalError <p></p> with a good error message and some highlighting (red background, maybe?) ========================
-// Validate the username when the form is submitted
-// Clear any additional error message and highlighting when the form is reset
+// Validate the username when the form is submitted                                     ===========================
+// Clear any additional error message and highlighting when the form is reset           ===========================
 // COMMENT EVERYTHING :D
