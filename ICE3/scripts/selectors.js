@@ -24,4 +24,11 @@ function cssSelectors() {
     $('li:even').css('background-color', "#2a9d8f");
 }
 
+function traversingTheDOM() {
+    $('#list').prev().css('background-color', "#fcf30040");
+    $('#list').next().css('background-color', "#fcf30040");
+
+    $('#list').find('li').css('background-color', "#fcf300040");
+}
+
 cssSelectors();
