@@ -43,7 +43,20 @@ function filtering() {
     $('#list').find('li').filter(function (i) {
         return i % 2 == 0;
     }).css('background-color','red');
-
 }
-filtering();
+
+function addReplaceRemove() {
+    // Selects the first li in any ul
+    $('ul li:first').append($('<ul><li>Im going to be the last item of the first sub-list</li></ul>'));
+
+    $('ul li').prepend($('<ul><li>Prepended</li></ul>'));
+
+    $('.red-box').after("<div class=\"orange-box\">New Red Box</div>")
+
+    let newText = "Last night, darth vader came down from the planet Vulcan.";
+    $('p.grumpy').replaceWith('<p>' + newText + '</p>');
+}
+
+// filtering();
 // cssSelectors();
+addReplaceRemove();
