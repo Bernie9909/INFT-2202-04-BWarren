@@ -22,22 +22,26 @@ array2.push(80);
 // Tuesday 
 let tuesdayArray = new Array(10).fill("Tuesday!");
 
+
+
 // Returns the the number x after it is squared.
-function square(x) {
-    return x * x;
-}
+// function square(x) {
+//     return x * x;
+// }
 
-let nums = new Array(1,33,22,5);
-let squaredNums = nums.map(function(value) {
-    return square
-});
-
-console.log(`squared values: ${squaredNums}`);
-
-// Todo: rewrite the above squared nums using arrow functions
 // let nums = new Array(1,33,22,5);
 // let squaredNums = nums.map(function(value) {
-//     return square
+//     return square(value);
 // });
 
-// console.log(`squared values: ${squaredNums}`);
+
+// Todo: rewrite the above squared nums using arrow functions
+// ==========================================================
+// Defining the function with arrows
+const square = x => x * x;
+// Assigning the variables
+let nums2 = new Array(1,33,22,5);
+// Assigning a variable with values returned from a function call
+let squaredNums = nums2.map(value => square(value));
+console.log(`Original Values: ${nums2}`);
+console.log(`squared values: ${squaredNums}`);
