@@ -16,25 +16,25 @@ xhreq.onreadystatechange = function() {
     // check that the state is done
     if (xhr.readyState === 4) {
         // turn into json
-        var jsonConversion = JSON.parse(xhr.responseText);
+        var jsonConversion = JSON.parse(xhreq.responseText);
         // console log to see what we have
-        console.log(data);
+        console.log(jsonConversion);
         // update the 1st image
-        document.getElementById("photo1").src = data.image1;
+        document.getElementById("photo1").src = jsonConversion.image1;
         // update the 1st figcaption
-        document.getElementById("figcap1")
+        document.getElementById("figcap1").textContent = jsonConversion.figcap1;
         // update the 2nd image
-        document.getElementById("photo2");
+        document.getElementById("photo2").src = jsonConversion.image2;
         // update the 2nd figcaption
-        document.getElementById("figcap2");
+        document.getElementById("figcap2").textContent = jsonConversion.figcap2;
     } else {
         // send error message
-        console.log("Error during request: " + xhr.status);
+        console.log("Error during request: " + xhreq.status);
     }
 }
-
 // use the .open() method to configure the object
-
+xhreq.open("get", "/data/data.json", true);
 // add datatype to header
-
+xhreq.setRequestHeader("Content-Type", "application/json")
 // use the .send() method to send the request
+xhreq.send();
