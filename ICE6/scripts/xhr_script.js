@@ -27,7 +27,7 @@ $(btn_Xhr).click(() => {
         // JSON.parse the joke
         let convertedJoke = JSON.parse(joke);
         // set the output (target the p not the div)
-        $('#output').text(convertedJoke.responseText);
+        $('#output').text(convertedJoke.joke);
         }
     }
         
