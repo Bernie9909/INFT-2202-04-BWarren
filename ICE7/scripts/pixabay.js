@@ -1,5 +1,7 @@
 /**
- * ADD HEADER COMMENTS WITH YOUR NAME + DATE
+ * Bernie Warren 
+ * 03-05-24 
+ * ICE7 Pixabay API call demonstration 
  */
 console.log('pixabay.js loaded');
 
@@ -19,36 +21,34 @@ const IMAGE_COUNT = 30;
  * makePosts
  * Creates posts for pictures.
  */
-const makePosts = () => 
+const makePosts = (pictureData) => 
 {
     getPictures();
     const blogColumn = $('.blog-column');
-    for (let i = 0; i<IMAGE_COUNT; i++) {
-        let id = i;
-        let card = $('div class="card">hi</div>')
-        .attr("id", "photo_" + id)
-        .appendTo(blogColumn);
+    if (pictureData?.length > 0) {
+        for (let i = 0; i<IMAGE_COUNT; i++) {
+            let id = i;
+            let pixabayPicture = pictureData[i];
+            let card = $('div class="card">hi</div>')
+            .attr("id", "photo_" + id)
+            .appendTo(blogColumn);
 
-        let pic = $('<img>')
-        .attr('id', "img-"+1)
-        .addClass('card-img-top')
-        // Append pic to card
-        .appendTo(card)
-        let cardBody = $('<div class ="card-body"></div>');
-        // Append card-body to the card elemtn 
-        
-        let cardParagraph = $('<p class = "card-text tags"></div>');
-        // Append paragraph to card body 
+            let pic = $('<img>')
+            .attr('id', "img-"+1)
+            .attr("src", pixabayPicture.webFormatURL)
+            .attr("alt", pixabayPicture.tags)
+            .addClass('card-img-top')
+            // Append pic to card
+            .appendTo(card)
+            let cardBody = $('<div class ="card-body"></div>')
+            // Append card-body to the card elemtn 
+            .appendTo(card)
+            
+            let cardParagraph = $('<p class = "card-text tags"></div>')
+            // Append paragraph to card body 
+            .appendTo(cardBody);
+        }
     }
-    // make HTML elements for posts using jQuery, same number as images retrieving
-        // use bootstrap cards and append to
-        // i.e. https://getbootstrap.com/docs/5.2/components/card/#about
-        // create card
-        // card body 
-        // card title
-        // image
-        // card text
-        // use tags for img alt= and card text 
 };
 
 /**
@@ -68,6 +68,11 @@ const getPictures = () =>
     .then((data => {
         console.log(data);
         console.log(data?.hits);
+        if (data?.hits?.length > 0) {
+            // Make sure data is not null 
+            // Create posts for all pictures
+            makePosts(data?.hits);
+        }
         // Data retrieved 
         //create posts
         // makePosts();
