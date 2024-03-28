@@ -1,27 +1,24 @@
-// const express = require('express');
-// const pug = require('pug');
+const express = require('express');
+const pug = require('pug');
+const student = require('/')
 
-// //port 
-// const port = 3000;
+// inialize method 
+const app = express();
 
-// // inialize method 
-// const app = express();
+// configure routes
+app.use('/', student);
 
-// // Setup template emgine
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'pug');
+// Setup template emgine
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
 
-// // Templating with pug?
-// app.get("/", function (req, res) {
-//     res.render("index", {
-//         title: "INFT 2022 - working with node and pug",
-//         firstName: "Sally"
-//     });
-// });
+app.get('/', (req, res => {
+    res.render('./pages/home', {
+        pageTitle: "INFT 2202 - HOME"
+    })
+}));
 
-const http = require('http');
-
-http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html' });
-    res.end('Hello World!');
-}).listen(3000);
+// listen on port 
+app.listen(3000, () => {
+    console.log("Server is listening on port 3000");
+})
